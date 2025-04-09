@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suchana & Abhijit's Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #330000;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #990000;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffcccc;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            position: relative;
+        }
+
+        .hero img {
+            width: 80%;
+            max-width: 400px;
+            border-radius: 15px;
+            border: 5px solid #ff0033;
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.5);
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            margin-top: 1rem;
+            color: #ffcccc;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #f2f2f2;
+            margin-top: 0.5rem;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 2rem 1rem;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #330000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .progress {
+            width: 80%;
+            height: 20px;
+            background: #f3f3f3;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid red;
+        }
+
+        .progress div {
+            height: 100%;
+            width: 0%;
+            background: red;
+            animation: load 2s linear forwards;
+        }
+
+        @keyframes load {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        .card {
+            background-color: #661111;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.5);
+        }
+
+        .card h2 {
+            color: #ff0033;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            color: #ffcccc;
+            margin-top: 1rem;
+        }
+
+        .card p {
+            color: #f2f2f2;
+            margin-bottom: 1rem;
+        }
+
+        .map-link a {
+            color: #ffcccc;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .map-link a:hover {
+            color: #ff0033;
+        }
+
+        /* Menu Section */
+        #menu {
+            background-color: #661111; /* Matches the card background */
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.5); /* Consistent shadow */
+            color: #f2f2f2; /* Matches text color */
+        }
+
+        #menu h2 {
+            color: #ff0033; /* Matches other section headings */
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        #menu h3 {
+            color: #ffcccc; /* Softer red for subheadings */
+            margin-top: 1rem;
+        }
+
+        #menu p {
+            color: #f2f2f2; /* Light gray for text */
+            line-height: 1.6; /* Better readability */
+            margin-bottom: 1rem;
+        }
+
+        #menu div {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            color: #ffcccc;
+            background-color: #440000;
+            border-top: 2px solid #ff0033;
+        }
+
+        /* Floating Hearts & Petals */
+        .floating {
+            position: fixed;
+            top: -50px;
+            animation: floatDown 10s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes floatDown {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Floating Hearts */
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .heart, .rose {
+            position: absolute;
+            color: red;
+            font-size: 30px;
+            animation: float 6s infinite ease-in;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            nav a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+
+            .hero img {
+                width: 90%;
+            }
+
+            #menu {
+                padding: 1rem;
+            }
+
+            #menu h2 {
+                font-size: 1.8rem;
+            }
+
+            #menu h3 {
+                font-size: 1.2rem;
+            }
+
+            #menu p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Loader -->
+<div class="loader" id="loader">
+    <div class="progress">
+        <div></div>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        setTimeout(function () {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('card').style.display = 'block';
+        }, 2000);
+    };
+</script>
+
+<!-- Floating Hearts and Petals -->
+<script>
+    const colors = ['❤️', '🌹'];
+    for (let i = 0; i < 25; i++) {
+        const elem = document.createElement('div');
+        elem.classList.add('floating');
+        elem.style.left = Math.random() * 100 + 'vw';
+        elem.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        elem.style.fontSize = (Math.random() * 20 + 20) + 'px';
+        elem.innerHTML = colors[Math.floor(Math.random() * colors.length)];
+        document.body.appendChild(elem);
+    }
+</script>
+
+<!-- Floating Hearts -->
+<div class="hearts">
+    <div class="heart" style="left:10%; animation-delay:0s;">❤️</div>
+    <div class="rose" style="left:30%; animation-delay:1s;">🌹</div>
+    <div class="heart" style="left:50%; animation-delay:2s;">❤️</div>
+    <div class="rose" style="left:70%; animation-delay:3s;">🌹</div>
+    <div class="heart" style="left:90%; animation-delay:4s;">❤️</div>
+</div>
+
+<!-- Music Control -->
+<div id="music-control" style="text-align: center; margin: 1rem;">
+    <button onclick="playMusic()" style="padding: 0.5rem 1rem; background-color: #ff0033; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Play Music
+    </button>
+</div>
+
+<audio id="background-music" loop>
+    <source src="./romantic-saxophone-244539.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    function playMusic() {
+        const music = document.getElementById('background-music');
+        music.play();
+    }
+</script>
+
+<header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#dates">Important Dates</a>
+        <a href="#venue">Venue</a>
+        <a href="#dresscode">Dress Code</a>
+        <a href="#menu">Menu</a>
+        <a href="#comments">Comments</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <img src="./suchana.jpg" alt="Couple Photo">
+    <h1>Suchana Das </h1>
+    <h1>   Weds </h1>
+    <h1>    Abhijit Mallick</h1>
+    <p>Together Forever</p>
+</section>
+
+<!-- Dates Section -->
+<section id="dates" class="card">
+    <h2>Important Dates</h2>
+    <h3>Haldi & Mehendi</h3>
+    <p>14th April 2025</p>
+
+    <h3>Wedding Ceremony</h3>
+    <p>15th April 2025</p>
+
+    <h3>Reception</h3>
+    <p>16th April 2025</p>
+</section>
+
+<!-- Venue Section -->
+<section id="venue" class="card">
+    <h2>Venue</h2>
+    <p>Orchid Banquets & Gardens</p>
+    <div class="map-link">
+        <a href="https://g.co/kgs/JJdXz1F" target="_blank">View on Google Maps</a>
+    </div>
+</section>
+
+<section id="dresscode" class="card">
+    <h2>Dress Code</h2>
+    <h3>Bride's Side</h3>
+    <p>Traditional Bengali Saree, Red/White Theme</p>
+    <h3>Groom's Side</h3>
+    <p>Kurta Pajama / Dhoti Kurta, Red Accent Preferred</p>
+</section>
+
+<section id="menu" class="card">
+    <h2>Wedding Menu</h2>
+    <div>
+        <h3>Drinks</h3>
+        <p>Virgin Mojito, Orange Mojito, Italian Smooch, Classic Fruit Punch, Virgin Merry, Blue Heaven, Classic Aam Panna, Fresh Lime Soda, Litchi Shake / Oreo Shake / Pan Shake / Butter Scotch Shake / Chikoo Shake</p>
+
+        <h3>Exotic Fruit Counter</h3>
+        <p>Indian – 4 & Imported - 4</p>
+
+        <h3>Chaat Counters</h3>
+        <p>Pani Puri with 3 types of water, English Dry fruit Tawa chat, Moong Dal Chilla, Aloo Tawa Chat, Matar Patila Kulcha, Dahi Bhalla Papri Chat, Pao Bhaji, Kanji Vada, Raj Kachori, Ram Ladoo, Palak Patey & Prune Ki Chat</p>
+
+        <h3>South Indian</h3>
+        <p>Dosa (Plain/ Masala), Idli Sambhar, Vada Sambhar</p>
+
+        <h3>Soups</h3>
+        <p>Tomato Dhaniye Ka Shorba, Vegetable Sweet Corn, Hot & Sour, Veg Manchow</p>
+
+        <h3>Salad Bar</h3>
+        <p>Fresh Garden Green Salad, Sprouts Salad, Peas & Potato Salad, Macaroni Salad, Laccha Onion, Sirke Wala Pyaaz, Russian Salad, Aloo Chat, Coleslaw, Kachumber Salad</p>
+
+        <h3>Veg Snacks</h3>
+        <p>Paneer Makhmali Tikka, Paneer Tikka Achari, Soya Chap Achari, Tandoori Gobi, Tandoori Aloo, Tandoori Pineapple, Soya Chap Malai, Cocktail Samosa, Paneer Finger, Corn Kebab, Cheese Balls, Veg Cutlet, French Fries/Smilies, Dahi Ke Kebab, Harabhara Kebab, Chili Paneer, Veg Spring Roll, Veg. Manchurian Dry, Honey Chilli Potato</p>
+
+        <h3>Main Course</h3>
+        <p>Dum Aloo, Vegetable Jalfrezi, Paneer Butter Masala, Kadhai Paneer, Paneer Lababdaar, Punjabi Kadhi Pakora, Mix Vegetable, Kurmuri Bhindi, Gobhi Keema Matar, Palak Corn, Special Sarson Ka Saag (seasonal), Pindi Channa Masala, Malai Kofta Curry, Gobhi Laccha Adraki, Dal Makhani, Shahi Rajma Masala</p>
+
+        <h3>Rice/Biryani</h3>
+        <p>Mattar Pulao, Veg. Biryani, Kashmiri Pulao, Jeera Rice, Veg. Pulao</p>
+
+        <h3>Curd Station</h3>
+        <p>Mix Veg. Raita, Boondi Raita, Mint Raita, Cucumber Raita, Pineapple Raita, Dahi Bhalla with Saunth</p>
+
+        <h3>Assorted Breads</h3>
+        <p>Parantha - Lachha/Pudina, Naan – Plain/Butter, Roti – Tandoori/Missi</p>
+
+        <h3>Desserts</h3>
+        <p>Gulab Jamun, Keseri Kheer, Kulfi, Ice Cream, Moong Dal Halwa, Pineapple Halwa, Shahi Tukda, Mal Pua, Doodh ki Kadhai, Jalebi Rabri, Gajar Ka Halwa, Rasmalai</p>
+
+        <h3>At Time of Phere</h3>
+        <p>Fried Cashewnuts, Roasted Almonds, Kaju Katli, Cookies, Tea & Coffee</p>
+    </div>
+</section>
+
+<section class="card">
+    <h2>Comments</h2>
+    <p>Share your wishes & blessings for Suchana & Abhijit!</p>
+
+    <div id="comments">
+        <script src="https://giscus.app/client.js"
+            data-repo="sumit-bhagat-2004/Comments"
+            data-repo-id="R_kgDOOWti-g"
+            data-category="General"
+            data-category-id="DIC_kwDOOWti-s4Co7qY"
+            data-mapping="url"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="transparent_dark"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div>
+</section>
+
+
+<footer>
+    Made with ❤️ for Suchana & Abhijit
+</footer>
+
+</body>
+
+</html>
